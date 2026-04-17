@@ -99,6 +99,12 @@ impl<T> Ref<T> {
     pub fn is_same(&self, other: &Ref<T>) -> bool {
         Arc::ptr_eq(&self.data, &other.data)
     }
+
+    /// A unique identity key for this shape's underlying data.
+    /// Two `Ref<T>` with the same `ptr_id` share the same `Arc` data.
+    pub fn ptr_id(&self) -> usize {
+        Arc::as_ptr(&self.data) as usize
+    }
 }
 
 impl<T> Deref for Ref<T> {

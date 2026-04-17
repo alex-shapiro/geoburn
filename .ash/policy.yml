@@ -49,6 +49,15 @@ files:
   - path: ~/Projects/bimcode/crates/hybrid-boolean/STATUS.md
     operations:
     - read
+  - path: ~/Projects/bimcode/crates/hybrid-boolean/src
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/hybrid-boolean/src/bezier.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/hybrid-boolean/src/tessellate.rs
+    operations:
+    - read
   - path: ~/Projects/bimcode/crates/mesh-boolean
     operations:
     - read

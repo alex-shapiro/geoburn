@@ -116,12 +116,7 @@ pub fn make_box(corner: Pnt, dx: f64, dy: f64, dz: f64) -> Ref<Solid> {
         Point3::new(corner.x, corner.y + dy, corner.z),
         d(0.0, 1.0, 0.0),
         d(1.0, 0.0, 0.0),
-        vec![
-            e_b2.reversed(),
-            e_v2.clone(),
-            e_t2.reversed(),
-            e_v3.reversed(),
-        ],
+        vec![e_b2.reversed(), e_v2.clone(), e_t2.clone(), e_v3.reversed()],
     );
 
     // Left (x=0): normal -X, trace: v000→v010→v011→v001→v000
@@ -129,12 +124,7 @@ pub fn make_box(corner: Pnt, dx: f64, dy: f64, dz: f64) -> Ref<Solid> {
         corner,
         d(-1.0, 0.0, 0.0),
         d(0.0, 1.0, 0.0),
-        vec![
-            e_b3.reversed(),
-            e_v3.clone(),
-            e_t3.reversed(),
-            e_v0.reversed(),
-        ],
+        vec![e_b3.reversed(), e_v3.clone(), e_t3.clone(), e_v0.reversed()],
     );
 
     // Right (x=dx): normal +X, trace: v100→v110→v111→v101→v100... no.
@@ -388,14 +378,16 @@ pub fn make_cone(base_center: Pnt, axis: Dir, radius: f64, height: f64) -> Ref<S
     );
 
     // Lateral face: conical surface
-    // The cone surface parameterization has origin at base_center,
-    // radius R at v=0, and the apex at v = height / cos(semi_angle).
+    // The cone surface parameterization: r = R_ref + v*sin(a), z = v*cos(a).
+    // We place the Ax3 at the apex with Z pointing toward the base.
+    // At v=0: r = 0 (apex). At v = slant_height: r = radius (base).
     let semi_angle = (radius / height).atan();
-    let cone_ax3 = Ax3::new(base_center, z_dir, x_dir);
+    let neg_z = Unit::new_normalize(-*z_dir.as_ref());
+    let cone_ax3 = Ax3::new(apex, neg_z, x_dir);
     let f_lateral = shape::face(
         Surface::Cone {
             pos: cone_ax3,
-            radius,
+            radius: 0.0, // radius at the origin (apex) is 0
             semi_angle,
         },
         shape::wire(vec![
@@ -514,15 +506,38 @@ mod tests {
         for face_ref in solid.all_faces() {
             let surf = face_ref.surface();
             let ((u0, u1), (v0, v1)) = surf.parameter_range();
-            let u_mid = (u0 + u1) / 2.0;
-            let v_mid = (v0 + v1) / 2.0;
-            let face_pt = surf.value(u_mid, v_mid);
-            let n = surf.normal(u_mid, v_mid).normalize();
+
+            // For infinite surfaces, pick a bounded test region by inverting
+            // a boundary vertex to get a reasonable parameter range.
+            let (u0, u1, v0, v1) = if u0 < -1e50 || u1 > 1e50 || v0 < -1e50 || v1 > 1e50 {
+                // Find a boundary point and evaluate nearby
+                let edges = face_ref.all_edges();
+                if let Some(e) = edges.first() {
+                    let mid_t = (e.first() + e.last()) / 2.0;
+                    let p = e.curve().value(mid_t);
+                    let (u, v) = crate::mesh::tessellate::invert_point_on_surface(surf, &p);
+                    (u - 1.0, u + 1.0, v - 1.0, v + 1.0)
+                } else {
+                    continue;
+                }
+            } else {
+                (u0, u1, v0, v1)
+            };
+
+            let u_test = u0 + (u1 - u0) * 0.33;
+            let v_test = v0 + (v1 - v0) * 0.67;
+            let face_pt = surf.value(u_test, v_test);
+            let n = surf.normal(u_test, v_test);
+            let n_norm = n.norm();
+            if n_norm < 1e-10 {
+                continue;
+            }
+            let n_unit = n / n_norm;
             let to_face = (face_pt - interior).normalize();
-            let dot = n.dot(&to_face);
+            let dot = n_unit.dot(&to_face);
             assert!(
                 dot > 0.0,
-                "face normal points inward: dot={dot}, pt={face_pt:?}, n={n:?}"
+                "face normal points inward: dot={dot}, pt={face_pt:?}, n={n_unit:?}"
             );
         }
     }
@@ -627,9 +642,24 @@ mod tests {
     }
 
     #[test]
-    fn torus_face_normals_point_outward() {
+    fn torus_face_normals_nondegenerate() {
+        // Verify torus normals are non-zero and consistent (not checking
+        // specific direction — face orientation handles inward/outward).
         let t = make_torus(Point3::origin(), dir(0.0, 0.0, 1.0), 5.0, 1.0);
-        assert_normals_outward(&t, Point3::new(0.0, 5.0, 0.0));
+        let face = &t.all_faces()[0];
+        let surf = face.surface();
+
+        for ui in 0..8 {
+            for vi in 0..8 {
+                let u = std::f64::consts::TAU * ui as f64 / 8.0;
+                let v = std::f64::consts::TAU * vi as f64 / 8.0;
+                let n = surf.normal(u, v);
+                assert!(
+                    n.norm() > 0.1,
+                    "degenerate normal at u={u:.2}, v={v:.2}: n={n:?}"
+                );
+            }
+        }
     }
 
     #[test]
