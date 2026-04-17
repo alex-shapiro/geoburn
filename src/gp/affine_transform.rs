@@ -9,7 +9,7 @@ use super::{Pnt, Vec3};
 /// non-uniform scale). Applies as: `p' = matrix * p + loc` when the form
 /// is `Other`, or `p' = scale * matrix * p + loc` for forms inherited
 /// from `Transform`.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct AffineTransform {
     matrix: Matrix3<f64>,
     loc: Vec3,

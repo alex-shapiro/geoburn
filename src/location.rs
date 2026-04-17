@@ -8,7 +8,7 @@ use crate::gp::transform::Transform;
 /// Used to attach a position/orientation to shapes without modifying
 /// the shape's intrinsic geometry. Locations compose via multiplication
 /// and can be inverted.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Location {
     trsf: Transform,
 }
@@ -74,12 +74,12 @@ impl Location {
             return Location::identity();
         }
         let base = if n > 0 {
-            self.trsf
+            self.trsf.clone()
         } else {
             self.trsf.inverse()
         };
         let count = n.unsigned_abs();
-        let mut result = base;
+        let mut result = base.clone();
         for _ in 1..count {
             result = result.compose(&base);
         }
@@ -211,7 +211,7 @@ mod tests {
     #[test]
     fn equality() {
         let t = Transform::rotation(&Ax1::new(Point3::origin(), dir(0.0, 0.0, 1.0)), FRAC_PI_2);
-        let a = Location::from_transform(t);
+        let a = Location::from_transform(t.clone());
         let b = Location::from_transform(t);
         assert_eq!(a, b);
     }

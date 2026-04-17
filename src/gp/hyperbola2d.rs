@@ -3,7 +3,7 @@ use super::ax22d::Ax22d;
 use super::line2d::Line2d;
 
 /// A hyperbola in 2D space
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Hyperbola2d {
     pos: Ax22d,
     major_radius: f64,

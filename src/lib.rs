@@ -6,3 +6,4 @@ pub mod geom;
 pub mod geom_types;
 pub mod gp;
 pub mod location;
+pub mod shape;

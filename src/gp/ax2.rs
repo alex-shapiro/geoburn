@@ -8,7 +8,7 @@ use super::{Dir, Pnt, Vec3, direction, precision};
 ///
 /// When the main direction (Z) is changed, X and Y are recomputed.
 /// When X or Y is changed, the other is recomputed but Z stays fixed.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Ax2 {
     origin: Pnt,
     vx: Dir,

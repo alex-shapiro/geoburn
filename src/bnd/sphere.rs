@@ -1,7 +1,7 @@
 use crate::gp::{Pnt, Vec3};
 
 /// A bounding sphere in 3D space.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct BoundingSphere {
     center: Vec3,
     radius: f64,
@@ -73,7 +73,7 @@ impl BoundingSphere {
             return;
         }
         if !self.valid {
-            *self = *other;
+            *self = other.clone();
             return;
         }
         let d_vec = other.center - self.center;
@@ -82,7 +82,7 @@ impl BoundingSphere {
             return; // other is inside self
         }
         if dist + self.radius <= other.radius {
-            *self = *other; // self is inside other
+            *self = other.clone(); // self is inside other
             return;
         }
         // New sphere enclosing both

@@ -6,7 +6,7 @@ use super::{Dir2d, Pnt2d};
 ///
 /// Defined by an origin and two orthogonal unit vectors (X, Y).
 /// Can be right-handed (direct) or left-handed. The 2D analog of `Ax3`.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Ax22d {
     origin: Pnt2d,
     vx: Dir2d,

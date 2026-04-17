@@ -8,7 +8,7 @@ use super::{Dir, Pnt, RESOLUTION};
 ///
 /// Defined by an `Ax3` coordinate system: the origin and Z direction
 /// define the plane, while X and Y define the parameterization.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Plane {
     pos: Ax3,
 }

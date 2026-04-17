@@ -3,7 +3,7 @@ use super::ax22d::Ax22d;
 use super::line2d::Line2d;
 
 /// A parabola in 2D space
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Parabola2d {
     pos: Ax22d,
     focal_length: f64,

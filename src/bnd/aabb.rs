@@ -28,7 +28,7 @@ bitflags::bitflags! {
 ///
 /// The raw bounds are stored without gap; `get()` and intersection tests
 /// apply the gap automatically.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Aabb {
     xmin: f64,
     xmax: f64,
@@ -272,7 +272,7 @@ impl Aabb {
             return;
         }
         if self.is_void() {
-            *self = *other;
+            *self = other.clone();
             return;
         }
         self.xmin = self.xmin.min(other.xmin);
@@ -391,11 +391,11 @@ impl Aabb {
             return Aabb::void();
         }
         if t.kind() == TransformKind::Identity {
-            return *self;
+            return self.clone();
         }
         if t.kind() == TransformKind::Translation && self.has_finite_part() {
             let delta = t.translation_part();
-            let mut result = *self;
+            let mut result = self.clone();
             result.xmin += delta.x;
             result.xmax += delta.x;
             result.ymin += delta.y;

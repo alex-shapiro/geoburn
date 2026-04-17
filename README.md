@@ -12,4 +12,6 @@ From least to most abstract:
 - **gp** is the lowest-level geometry processing module
 - **curves** and **surfaces** are low-level 1D and 2D utilities
 - **bnd** is bounding box logic
-- **bspline** is b-spline curve and surface logic
+- **bspline** contains b-spline curve and surface logic
+- **geom** contains 2/3D curve and surface definitions
+- **shape** contains 2/3D shape definitions

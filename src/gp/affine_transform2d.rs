@@ -7,7 +7,7 @@ use super::{Pnt2d, Vec2d};
 /// A general affine transformation in 2D space.
 ///
 /// Unlike `Transform2d`, the 2×2 matrix can be non-orthogonal (shear, non-uniform scale).
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct AffineTransform2d {
     matrix: Matrix2<f64>,
     loc: Vec2d,

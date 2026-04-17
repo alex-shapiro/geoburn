@@ -51,10 +51,10 @@ impl TransformLerp {
     /// Returns the start transform at t=0 and end transform at t=1.
     pub fn interpolate(&self, t: f64) -> Transform {
         if t.abs() < precision::CONFUSION {
-            return self.start;
+            return self.start.clone();
         }
         if (t - 1.0).abs() < precision::CONFUSION {
-            return self.end;
+            return self.end.clone();
         }
 
         let loc = self.loc_start.lerp(&self.loc_end, t);

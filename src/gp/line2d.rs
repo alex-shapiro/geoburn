@@ -2,7 +2,7 @@ use super::ax2d::Ax2d;
 use super::{Dir2d, Pnt2d, RESOLUTION};
 
 /// An infinite line in 2D space
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Line2d {
     pub pos: Ax2d,
 }

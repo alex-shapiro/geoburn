@@ -2,7 +2,7 @@ use super::{Dir, Pnt, direction};
 
 /// An axis in 3D space: a point and a direction.
 /// Used to describe axes of revolution, rotation, symmetry, etc.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Ax1 {
     pub origin: Pnt,
     pub dir: Dir,

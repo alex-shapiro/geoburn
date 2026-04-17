@@ -7,7 +7,7 @@ use std::f64::consts::PI;
 ///
 /// Defined by a coordinate system (`Ax2`) whose origin is the center,
 /// and a radius. The circle lies in the XY plane of the coordinate system.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Circle {
     pos: Ax2,
     radius: f64,

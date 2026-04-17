@@ -5,7 +5,7 @@ use std::f64::consts::PI;
 /// A circle in 2D space.
 ///
 /// Defined by a coordinate system (`Ax22d`) whose origin is the center, and a radius.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Circle2d {
     pos: Ax22d,
     radius: f64,

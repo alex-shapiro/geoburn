@@ -4,7 +4,7 @@ use super::line2d::Line2d;
 use std::f64::consts::PI;
 
 /// An ellipse in 2D space
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Ellipse2d {
     pos: Ax22d,
     major_radius: f64,

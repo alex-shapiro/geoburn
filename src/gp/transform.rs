@@ -24,7 +24,7 @@ pub enum TransformKind {
 ///
 /// The matrix is always orthogonal (det = ±1). The scale factor is stored
 /// separately.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Transform {
     scale: f64,
     kind: TransformKind,
@@ -242,7 +242,7 @@ impl Transform {
     /// Panics if the scale factor is zero.
     pub fn inverse(&self) -> Self {
         match self.kind {
-            Identity => *self,
+            Identity => self.clone(),
             Translation | PointMirror => Self {
                 kind: self.kind,
                 scale: self.scale,
@@ -286,8 +286,8 @@ impl Transform {
     pub fn compose(&self, other: &Transform) -> Transform {
         match (self.kind, other.kind) {
             // Trivial: either side is identity
-            (_, Identity) => *self,
-            (Identity, _) => *other,
+            (_, Identity) => self.clone(),
+            (Identity, _) => other.clone(),
 
             // Rotation * Rotation (both scale=1)
             (Rotation, Rotation) => {

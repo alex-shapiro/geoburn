@@ -9,7 +9,7 @@ use super::{Dir, Pnt, Vec3, direction, precision};
 ///
 /// Right-handed: Z = X × Y
 /// Left-handed:  Z = -(X × Y)
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Ax3 {
     origin: Pnt,
     vx: Dir,

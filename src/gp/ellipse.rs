@@ -9,7 +9,7 @@ use std::f64::consts::PI;
 /// Defined by a coordinate system (`Ax2`) whose origin is the center,
 /// a major radius, and a minor radius. The ellipse lies in the XY plane
 /// of the coordinate system, with the major axis along X.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Ellipse {
     pos: Ax2,
     major_radius: f64,

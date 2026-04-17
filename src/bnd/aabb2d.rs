@@ -18,7 +18,7 @@ bitflags::bitflags! {
 }
 
 /// An axis-aligned bounding box in 2D space.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Aabb2d {
     xmin: f64,
     xmax: f64,
@@ -205,7 +205,7 @@ impl Aabb2d {
             return;
         }
         if self.is_void() {
-            *self = *other;
+            *self = other.clone();
             return;
         }
         self.xmin = self.xmin.min(other.xmin);
@@ -297,11 +297,11 @@ impl Aabb2d {
             return Aabb2d::void();
         }
         if t.kind() == TransformKind::Identity {
-            return *self;
+            return self.clone();
         }
         if t.kind() == TransformKind::Translation && self.has_finite_part() {
             let delta = t.translation_part();
-            let mut result = *self;
+            let mut result = self.clone();
             result.xmin += delta.x;
             result.xmax += delta.x;
             result.ymin += delta.y;

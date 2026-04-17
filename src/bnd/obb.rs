@@ -4,7 +4,7 @@ use crate::gp::{Pnt, Vec3};
 ///
 /// Defined by a center, three orthogonal axes, and half-extents along each.
 /// Uses the separating axis theorem (SAT) for intersection tests.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Obb {
     center: Vec3,
     axes: [Vec3; 3],

@@ -8,7 +8,7 @@ use super::line::Line;
 /// Defined by a coordinate system (`Ax2`) whose origin is the center,
 /// a major radius (real semi-axis), and a minor radius (imaginary semi-axis).
 /// The hyperbola lies in the XY plane with branches along the X axis.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Hyperbola {
     pos: Ax2,
     major_radius: f64,

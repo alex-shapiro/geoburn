@@ -8,7 +8,7 @@ use super::line::Line;
 /// Defined by a coordinate system (`Ax2`) whose origin is the vertex,
 /// and a focal length. The parabola lies in the XY plane with the axis
 /// of symmetry along X, opening in the +X direction.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Parabola {
     pos: Ax2,
     focal_length: f64,

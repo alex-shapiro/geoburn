@@ -6,7 +6,7 @@ use super::ax3::Ax3;
 ///
 /// Defined by a coordinate system (`Ax3`) whose Z axis is the cylinder
 /// axis, and a radius.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Cylinder {
     pos: Ax3,
     radius: f64,

@@ -6,7 +6,7 @@ use std::f64::consts::PI;
 /// A sphere in 3D space.
 ///
 /// Defined by a coordinate system (`Ax3`) whose origin is the center, and a radius.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Sphere {
     pos: Ax3,
     radius: f64,

@@ -4,7 +4,7 @@ use super::ax1::Ax1;
 use super::{Dir, Pnt, Vec3};
 
 /// An infinite line in 3D space, defined by a point and a direction
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Line {
     pub pos: Ax1,
 }

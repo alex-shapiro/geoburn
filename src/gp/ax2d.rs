@@ -1,7 +1,7 @@
 use super::{Dir2d, Pnt2d, direction2d};
 
 /// An axis in 2D space: a point and a direction. The 2D analog of `Ax1`.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Ax2d {
     pub origin: Pnt2d,
     pub dir: Dir2d,

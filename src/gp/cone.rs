@@ -7,7 +7,7 @@ use super::ax3::Ax3;
 /// Defined by a coordinate system (`Ax3`), a half-angle, and a reference
 /// radius (the radius at the origin of the coordinate system).
 /// The Z axis of the coordinate system is the cone's axis.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Cone {
     pos: Ax3,
     radius: f64,

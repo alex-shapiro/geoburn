@@ -9,7 +9,7 @@ use TransformKind::*;
 /// A rigid transformation in 2D space with uniform scale.
 ///
 /// Applies as: `p' = scale * matrix * p + loc`. The 2D analog of `Transform`.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Transform2d {
     scale: f64,
     kind: TransformKind,
@@ -199,7 +199,7 @@ impl Transform2d {
 
     pub fn inverse(&self) -> Self {
         match self.kind {
-            Identity => *self,
+            Identity => self.clone(),
             Translation | PointMirror => Self {
                 kind: self.kind,
                 scale: self.scale,
@@ -242,8 +242,8 @@ impl Transform2d {
     #[allow(clippy::cognitive_complexity)]
     pub fn compose(&self, other: &Transform2d) -> Transform2d {
         match (self.kind, other.kind) {
-            (_, Identity) => *self,
-            (Identity, _) => *other,
+            (_, Identity) => self.clone(),
+            (Identity, _) => other.clone(),
 
             (Rotation, Rotation) => {
                 let new_loc = if other.loc.norm_squared() > 0.0 {

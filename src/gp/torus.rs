@@ -8,7 +8,7 @@ use std::f64::consts::PI;
 /// Defined by a coordinate system (`Ax3`), a major radius (distance from
 /// the center to the tube center), and a minor radius (tube radius).
 /// The Z axis of the coordinate system is the torus axis.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct Torus {
     pos: Ax3,
     major_radius: f64,
