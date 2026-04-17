@@ -43,6 +43,18 @@ files:
   - path: ~/Projects/.gitignore
     operations:
     - read
+  - path: ~/Projects/bimcode
+    operations:
+    - read
+  - path: ~/Projects/bimcode/.git/info/exclude
+    operations:
+    - read
+  - path: ~/Projects/bimcode/.gitignore
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates
+    operations:
+    - read
   - path: ~/Projects/bimcode/crates/hybrid-boolean
     operations:
     - read
@@ -61,7 +73,52 @@ files:
   - path: ~/Projects/bimcode/crates/mesh-boolean
     operations:
     - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/Cargo.toml
+    operations:
+    - read
   - path: ~/Projects/bimcode/crates/mesh-boolean/PORT_PLAN.md
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/bvh.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/classify.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/geogram
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/geogram/boolean.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/geogram/cdt.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/geogram/exact_pred.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/geogram/expansion.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/geogram/mesh_in_triangle.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/geogram/mod.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/geogram/triangle_isect.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/intersect.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/lib.rs
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/src/types.rs
     operations:
     - read
 network:

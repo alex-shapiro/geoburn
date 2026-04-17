@@ -7,5 +7,6 @@ pub mod geom_types;
 pub mod gp;
 pub mod location;
 pub mod mesh;
+pub mod mesh_boolean;
 pub mod shape;
 pub mod solids;

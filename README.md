@@ -16,3 +16,7 @@ From least to most abstract:
 - **geom** contains 2/3D curve and surface definitions
 - **shape** contains 2/3D shape definitions
 - **solids** contains builder functions for solids
+
+## TODO
+
+- https://github.com/thingi10k/thingi10k
