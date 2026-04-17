@@ -5,13 +5,51 @@ dependencies:
   ash/base-macos: ^0
   ash/claude-code: ^0.0.5
   ash/git: ^0
+  ash/github: ^0.0.1
   ash/rust-dev: ^0.0.4
 files:
   rules:
   - path: ./**
+  - path: /Applications/Visual Studio Code.app/Contents/Resources/app/bin/code
+    operations:
+    - read
+  - path: ~/.zprofile
+    operations:
+    - read
+  - path: ~/Library/Application Support/Arc/User Data
+    operations:
+    - read
+  - path: ~/Library/Application Support/BraveSoftware/Brave-Browser
+    operations:
+    - read
+  - path: ~/Library/Application Support/Chromium
+    operations:
+    - read
+  - path: ~/Library/Application Support/Google/Chrome
+    operations:
+    - read
+  - path: ~/Library/Application Support/Microsoft Edge
+    operations:
+    - read
+  - path: ~/Library/Application Support/Vivaldi
+    operations:
+    - read
+  - path: ~/Library/Application Support/com.operasoftware.Opera
+    operations:
+    - read
+  - path: ~/Projects
+    operations:
+    - read
+  - path: ~/Projects/.gitignore
+    operations:
+    - read
 network:
-  rules: []
+  rules:
+  - host: downloads.claude.ai
+    ports:
+    - 443
 exec:
-  rules: []
+  rules:
+  - path: ./**
 io_devices:
   rules: []
