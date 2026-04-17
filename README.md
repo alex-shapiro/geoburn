@@ -15,3 +15,4 @@ From least to most abstract:
 - **bspline** contains b-spline curve and surface logic
 - **geom** contains 2/3D curve and surface definitions
 - **shape** contains 2/3D shape definitions
+- **solids** contains builder functions for solids

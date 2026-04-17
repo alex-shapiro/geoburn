@@ -43,6 +43,18 @@ files:
   - path: ~/Projects/.gitignore
     operations:
     - read
+  - path: ~/Projects/bimcode/crates/hybrid-boolean
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/hybrid-boolean/STATUS.md
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean
+    operations:
+    - read
+  - path: ~/Projects/bimcode/crates/mesh-boolean/PORT_PLAN.md
+    operations:
+    - read
 network:
   rules:
   - host: downloads.claude.ai
