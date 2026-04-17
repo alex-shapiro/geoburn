@@ -1,7 +1,8 @@
 pub mod bnd;
 pub mod bspline;
-pub mod curves;
+pub mod el_curves;
+pub mod el_surfaces;
+pub mod geom;
 pub mod geom_types;
 pub mod gp;
 pub mod location;
-pub mod surfaces;
