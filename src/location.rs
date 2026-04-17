@@ -108,9 +108,7 @@ impl PartialEq for Location {
         if self.is_identity() && other.is_identity() {
             return true;
         }
-        // Compare by transforming a few test points and checking closeness.
-        // This is what OCCT effectively does via pointer comparison on shared
-        // Datum3D objects; we approximate with a value-based check.
+        // Compare by transforming a few test points and checking closeness
         let test_points = [
             Pnt::new(0.0, 0.0, 0.0),
             Pnt::new(1.0, 0.0, 0.0),

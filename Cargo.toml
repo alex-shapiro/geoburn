@@ -6,3 +6,6 @@ edition = "2024"
 [dependencies]
 bitflags = "2"
 nalgebra = "0.34.2"
+
+[dev-dependencies]
+proptest = "1"
